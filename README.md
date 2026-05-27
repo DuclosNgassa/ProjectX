@@ -5,34 +5,38 @@ Funktion hat einen deutschen Docstring, `pass` als Platzhalter und soll von den
 Studierenden implementiert werden. Fokus: Strings, Listen, Dicts/Sets,
 Schleifen, einfache Mathematik und saubere Funktionalität.
 
-## Gruppenaufteilung (4 Gruppen laut Board)
+## Gruppenaufteilung (5 Gruppen laut Board)
 
-Die aktuelle Referenz fuer Gruppen und Aufgabenbereiche ist `PROJECT.md`.
+Die aktuelle Referenz für Gruppen und Aufgabenbereiche ist [`PROJECT.md`](PROJECT.md).
 
-- **Gruppe 1** (`mhmood88hz-cloud`, `tasthhhh4`, `deryasarikaya`): Funktionen 1-25 (`aufgabe_001` bis `aufgabe_025`)
-- **Gruppe 2** (`Lexoniarus`, `Mr-Miller777`): Funktionen 26-50 (`aufgabe_026` bis `aufgabe_050`)
-- **Gruppe 3** (`caferayven22`, `Kastriottafolli`): Funktionen 51-75 (`aufgabe_051` bis `aufgabe_075`)
-- **Gruppe 4** (`Patricia`, `Sence198719`): Funktionen 76-100 (`aufgabe_076` bis `aufgabe_100`)
+- **Gruppe 1** (`patricznr1`, `ANY1-hub`): Funktionen 1–20 (`aufgabe_001` bis `aufgabe_020`)
+- **Gruppe 2** (`it-student`, `birgitt-thomsen`): Funktionen 21–40 (`aufgabe_021` bis `aufgabe_040`)
+- **Gruppe 3** (`Appeyron`, `esterplaza`): Funktionen 41–60 (`aufgabe_041` bis `aufgabe_060`)
+- **Gruppe 4** (`markus-niessen`, `kollodergrosse`): Funktionen 61–80 (`aufgabe_061` bis `aufgabe_080`)
+- **Gruppe 5** (`Airdinsh-Ai`, `NiBerni`, `ahmadalshouly`): Funktionen 81–100 (`aufgabe_081` bis `aufgabe_100`)
 
 Hinweis: Die Nummer ist im Funktionsnamen enthalten. Bitte bearbeitet nur den
 euch zugewiesenen Bereich, damit Merge-Konflikte minimiert werden. Eure Namen
 stehen auch direkt als Kommentar über jeder Aufgabe in `aufgaben.py`.
 
+Wenn ihr zuvor mit einer älteren 4-Gruppen-Aufteilung (je 25 Aufgaben) gearbeitet
+habt, legt neue Branches nach der aktuellen [`PROJECT.md`](PROJECT.md) an.
+
 ## Vorgehensweise für Studierende
 
 1. Repository klonen: `git clone <repo-url>`
-2. In das Repo wechseln: `cd Project-x`
-3. Eigenen Branch anlegen (Beispiel fuer Gruppe 1, Person `tasthhhh4`):
-  - `git checkout -b gruppe-1/tasthhhh4`
+2. In das Repo wechseln: `cd ProjectX`
+3. Eigenen Branch anlegen (Beispiel für Gruppe 1, Person `patricznr1`):
+  - `git checkout -b gruppe-1/patricznr1`
 4. Nur eure Funktionen in `aufgaben.py` implementieren (Docstring lesen).
 5. Lokale Checks (Beispiele):
   - Optional: einfache Selbsttests schreiben/ausführen
-  - Falls Tests bereitgestellt werden: `python -m pytest`
+  - Gruppenzuordnung prüfen: `python3 -m pytest tests/test_gruppen_zuordnung.py`
 6. Änderungen prüfen: `git status`
 7. Änderungen vormerken und committen:
   - `git add aufgaben.py`
   - `git commit -m "Implementiere Aufgaben 001-010"`
-8. Branch pushen: `git push origin gruppe-1/arne`
+8. Branch pushen: `git push origin gruppe-1/patricznr1`
 9. Pull Request (PR) im Git-Host erstellen. Reviewer: Dozent oder Teamlead.
 10. Feedback einarbeiten, PR aktualisieren (`git add` + `git commit --amend` oder
   neuer Commit, dann `git push --force-with-lease` bei amend).
