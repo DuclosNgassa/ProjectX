@@ -8,7 +8,7 @@ getesteten Code und haltet euch an PEP 8.
 from typing import Any, Optional
 
 
-# Gruppe: patricznr1, ANY1-hub
+# Gruppe: Vielen Dank.
 def aufgabe_001_spiegle_text(text: str) -> str:
     """Gib den Text rückwärts zurück."""
     pass
@@ -17,7 +17,7 @@ def aufgabe_001_spiegle_text(text: str) -> str:
 # Gruppe: patricznr1, ANY1-hub
 def aufgabe_002_zaehle_vokale(text: str) -> int:
     """Zähle die Anzahl der Vokale im Text (a, e, i, o, u)."""
-    pass
+    return sum(1 for zeichen in text.lower() if zeichen in "aeiou")
 
 
 # Gruppe: patricznr1, ANY1-hub
