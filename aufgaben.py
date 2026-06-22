@@ -608,6 +608,3 @@ def aufgabe_099_parse_kv(text: str) -> dict[str, str]:
 def aufgabe_100_teile_in_abschnitte(text: str, breite: int) -> list[str]:
     """Zerlege einen Text in Abschnitte fester Breite."""
     pass
-
-
-print(aufgabe_032_remove_none([None, 2, 3, None]))
