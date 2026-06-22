@@ -131,7 +131,8 @@ def aufgabe_020_sortiere_aufsteigend(zahlen: list[int]) -> list[int]:
 # Gruppe: Tobbyte, DuclosNgassa
 def aufgabe_021_sortiere_absteigend(zahlen: list[int]) -> list[int]:
     """Gib eine neue Liste mit absteigend sortierten Zahlen zurück."""
-    pass
+    zahlen.sort(reverse=True)
+    return zahlen
 
 
 # Gruppe: Tobbyte, DuclosNgassa
