@@ -198,7 +198,8 @@ def aufgabe_031_merge_lists(a: list[int], b: list[int]) -> list[int]:
 # Gruppe: Tobbyte, DuclosNgassa
 def aufgabe_032_remove_none(werte: list[Optional[int]]) -> list[int]:
     """Entferne alle None-Werte aus der Liste."""
-    pass
+    return [item for item in werte if item is not None]
+
 
 
 # Gruppe: Tobbyte, DuclosNgassa
@@ -608,3 +609,5 @@ def aufgabe_100_teile_in_abschnitte(text: str, breite: int) -> list[str]:
     """Zerlege einen Text in Abschnitte fester Breite."""
     pass
 
+
+print(aufgabe_032_remove_none([None, 2, 3, None]))
