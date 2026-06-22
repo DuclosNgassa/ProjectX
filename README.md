@@ -49,7 +49,7 @@ habt, legt neue Branches nach der aktuellen [`PROJECT.md`](PROJECT.md) an.
 - Prüfe Randfälle (leere Listen, None, negative Zahlen, Sonderzeichen).
 - Schreibe kleine, wiederverwendbare Hilfsfunktionen nur, wenn nötig.
 
-## Konflikte vermeiden
+## Konflikt vermeiden
 
 - Arbeite ausschließlich im zugewiesenen Funktionsbereich.
 - Ziehe vor neuem Work `git pull origin main` (oder `git fetch` + `git rebase`).
