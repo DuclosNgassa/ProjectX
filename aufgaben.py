@@ -137,7 +137,7 @@ def aufgabe_021_sortiere_absteigend(zahlen: list[int]) -> list[int]:
 # Gruppe: Tobbyte, DuclosNgassa
 def aufgabe_022_filter_gerade(zahlen: list[int]) -> list[int]:
     """Filtere alle geraden Zahlen aus der Liste."""
-    pass
+    return [num % 2 == 0 for num in zahlen]
 
 
 # Gruppe: Tobbyte, DuclosNgassa
