@@ -505,7 +505,14 @@ def aufgabe_082_join_ohne_letztes(worte: list[str]) -> str:
 # Gruppe: binudio1, iSayaGen
 def aufgabe_083_count_characters_ignore_case(text: str) -> dict[str, int]:
     """Zähle Zeichenhäufigkeiten ohne zwischen Groß/Klein zu unterscheiden."""
-    pass
+    text = text.lower()
+    result: dict[str, int] = {}
+    for char in text:
+        if char in result:
+            result[char] += 1
+        else:
+            result[char] = 1
+    return result
 
 
 # Gruppe: binudio1, iSayaGen
