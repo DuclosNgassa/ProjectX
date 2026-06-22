@@ -8,7 +8,7 @@ getesteten Code und haltet euch an PEP 8.
 from typing import Any, Optional
 
 
-# Gruppe: Vielen Dank.
+# Gruppe: patricznr1, ANY1-hub
 def aufgabe_001_spiegle_text(text: str) -> str:
     """Gib den Text rückwärts zurück."""
     pass
