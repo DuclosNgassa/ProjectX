@@ -497,7 +497,7 @@ def aufgabe_081_filter_worte_laenge(worte: list[str], minimum: int) -> list[str]
 # Gruppe: binudio1, iSayaGen
 def aufgabe_082_join_ohne_letztes(worte: list[str]) -> str:
     """Verbinde Wörter mit Komma, ersetze das letzte Komma durch ' und '."""
-    pass
+    return worte[0] if len(worte) == 1 else ", ".join(worte[:-1]) + " und " + worte[-1] if worte else ""
 
 
 # Gruppe: binudio1, iSayaGen
