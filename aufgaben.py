@@ -370,8 +370,12 @@ def aufgabe_060_binaer_zu_int(bits: str) -> int:
 
 # Gruppe: LarsPetschke, PaddePain
 def aufgabe_061_int_zu_binaer(n: int) -> str:
-    """Wandle eine Ganzzahl in einen Binärstring ohne Präfix um."""
-    pass
+    if n < 0:
+        # two's complement for fixed width
+        n = (1 << width) + n
+    if n >= (1 << width) or n < 0:
+        raise ValueError(f"Value {n} cannot be represented in {width} bits")
+    return format(n, f'0{width}b')
 
 
 # Gruppe: LarsPetschke, PaddePain
@@ -436,44 +440,196 @@ def aufgabe_071_zip_to_dict(keys: list[str], values: list[int]) -> dict[str, int
 
 # Gruppe: LarsPetschke, PaddePain
 def aufgabe_072_swap_keys_values(data: dict[str, str]) -> dict[str, str]:
-    """Tausche Keys und Values, Fehler bei Duplikaten klären."""
-    pass
+    """
+    Tauscht Keys und Values in einem Dictionary.
+    Falls mehrere Keys denselben Value besitzen, wird ein ValueError mit
+    einer verständlichen Meldung ausgelöst.
+
+    Parameters:
+    - data: Dictionary mit string-Schlüsseln und string-Werten
+
+    Returns:
+    - neues Dictionary, in dem Keys und Values vertauscht sind
+
+    Raises:
+    - ValueError bei Duplikaten in den Values (die dann zu gleichen Keys führen würden)
+    """
+    # Prüfen auf Duplikate in den Values
+    seen_values = set()
+    for v in data.values():
+        if v in seen_values:
+            # Find alle Keys, die denselben Value haben, für hilfreiche Fehlermeldung
+            dup_keys = [k for k, val in data.items() if val == v]
+            raise ValueError(
+                f"Duplikat gefunden: Value '{v}' kommt bei Keys {dup_keys} vor. "
+                "Beim Tauschen würden Keys kollidieren."
+            )
+        seen_values.add(v)
+
+    # Sicherheit: keine Duplikate -> tauschen
+    swapped: dict[str, str] = {v: k for k, v in data.items()}
+    return swapped
+
 
 
 # Gruppe: LarsPetschke, PaddePain
 def aufgabe_073_filter_dict_by_value(data: dict[str, int], minimum: int) -> dict[str, int]:
-    """Filtere Einträge, deren Wert mindestens minimum ist."""
-    pass
+    """
+    Filtert ein Dictionary so, dass nur Einträge mit Wert >= minimum verbleiben.
+
+    Parameters:
+    - data: Dictionary mit string-Schlüsseln und int-Werten
+    - minimum: Schwellenwert (einschließlich)
+
+    Returns:
+    - Neues Dictionary mit nur den Einträgen, deren Wert >= minimum
+    """
+    if not isinstance(minimum, int):
+        raise TypeError("minimum muss ein int sein")
+
+    # Kompakt: Dict-Komprehension zum Filtern
+    return {k: v for k, v in data.items() if v >= minimum}
+
 
 
 # Gruppe: LarsPetschke, PaddePain
 def aufgabe_074_werte_aufaddieren(datensaetze: list[dict[str, int]]) -> dict[str, int]:
-    """Summiere Werte gleicher Schlüssel über mehrere Dicts."""
-    pass
+    """
+    Summiert Werte gleicher Schlüssel über mehrere Dicts.
+
+    Parameters:
+    - datensaetze: Liste von Dicts mit string-Schlüsseln und int-Werten
+
+    Returns:
+    - Dict[str, int] mit der Summe der Werte pro Schlüssel
+    """
+    result: Dict[str, int] = {}
+
+    for ds in datensaetze:
+        if not isinstance(ds, dict):
+            raise TypeError("Jedes Element der Datensätze muss ein Dict[str, int] sein")
+        for k, v in ds.items():
+            if not isinstance(k, str) or not isinstance(v, int):
+                raise TypeError("Schlüssel muss str und Wert muss int sein")
+            result[k] = result.get(k, 0) + v
+
+    return result
 
 
 # Gruppe: LarsPetschke, PaddePain
 def aufgabe_075_dict_diff(a: dict[str, int], b: dict[str, int]) -> dict[str, str]:
-    """Vergleiche a und b: 'gleich', 'nur_a', 'nur_b', 'anders' pro Schlüssel."""
-    pass
+    """
+    Vergleicht zwei Dicts und gibt für jeden Schlüssel einen Status zurück:
+    - 'gleich'  : Schlüssel in beiden Dicts mit gleichen Werten
+    - 'nur_a'  : Schlüssel nur in a
+    - 'nur_b'  : Schlüssel nur in b
+    - 'anders' : Schlüssel in beiden, aber unterschiedliche Werte
+
+    Returns:
+    - Dict[str, str] mapping from Schlüssel zu Status
+    """
+    result: Dict[str, str] = {}
+
+    # Alle Schlüssel aus beiden Dictionaries berücksichtigen
+    keys = set(a.keys()) | set(b.keys())
+
+    for k in keys:
+        if k in a and k in b:
+            result[k] = "gleich" if a[k] == b[k] else "anders"
+        elif k in a:
+            result[k] = "nur_a"
+        else:  # k in b
+            result[k] = "nur_b"
+
+    return result
 
 
 # Gruppe: LarsPetschke, PaddePain
 def aufgabe_076_sortiere_tupel_nach_index(eintraege: list[tuple[Any, ...]], index: int = 0) -> list[tuple[Any, ...]]:
-    """Sortiere eine Liste von Tupeln nach dem angegebenen Index."""
-    pass
+    """
+    Vergleicht zwei Dicts und gibt für jeden Schlüssel einen Status zurück:
+    - 'gleich'  : Schlüssel in beiden Dicts mit gleichen Werten
+    - 'nur_a'  : Schlüssel nur in a
+    - 'nur_b'  : Schlüssel nur in b
+    - 'anders' : Schlüssel in beiden, aber unterschiedliche Werte
+
+    Returns:
+    - Dict[str, str] mapping from Schlüssel zu Status
+    """
+    result: Dict[str, str] = {}
+
+    # Alle Schlüssel aus beiden Dictionaries berücksichtigen
+    keys = set(a.keys()) | set(b.keys())
+
+    for k in keys:
+        if k in a and k in b:
+            result[k] = "gleich" if a[k] == b[k] else "anders"
+        elif k in a:
+            result[k] = "nur_a"
+        else:  # k in b
+            result[k] = "nur_b"
+
+    return result
 
 
 # Gruppe: LarsPetschke, PaddePain
+from typing import List, Sequence
+
 def aufgabe_077_transponiere_matrix(matrix: list[list[int]]) -> list[list[int]]:
-    """Transponiere eine rechteckige Matrix."""
-    pass
+        """
+        Transponiert eine rechteckige Matrix.
+
+        Parameters:
+        - matrix: Liste von Zeilen, jede Zeile ist eine Liste von ints
+
+        Returns:
+        - Transponierte Matrix als Liste von Zeilen
+        """
+        if not matrix:
+            return []
+
+        # Sicherstellen, dass alle Zeilen die gleiche Länge haben
+        row_len = len(matrix < a
+        href = ""
+
+        class ="citation-link" target="_blank" style="vertical-align: super; font-size: 0.8em; margin-left: 3px;" >[0] < / a > )
+        for row in matrix:
+            if
+
+        not isinstance(row, list):
+        raise TypeError("Alle Elemente von 'matrix' müssen Listen sein")
+        if len(row) != row_len:
+            raise ValueError("Matrix muss rechteckig sein (alle Zeilen gleich lang)")
+
+    # Transponieren: zeilenindex und spaltenindex tauschen
+    return [[matrix[r][c] for r in range(len(matrix))] for c in range(row_len)]
 
 
 # Gruppe: LarsPetschke, PaddePain
 def aufgabe_078_diagonalsumme(matrix: list[list[int]]) -> int:
-    """Berechne die Summe der Hauptdiagonale einer quadratischen Matrix."""
-    pass
+    """
+    Berechnet die Summe der Hauptdiagonale einer quadratischen Matrix.
+
+    Parameters:
+    - matrix: quadratische Matrix als Liste von Listen von ints
+
+    Returns:
+    - Summe der Hauptdiagonale
+    """
+    if not matrix:
+        return 0
+
+    n = len(matrix)
+    # Validierung: quadratisch
+    for row in matrix:
+        if not isinstance(row, list):
+            raise TypeError("Jedes Element von 'matrix' muss eine Liste sein")
+        if len(row) != n:
+            raise ValueError("Matrix muss quadratisch sein (n x n)")
+
+    # Summe der Hauptdiagonale: indices (i, i)
+    total = sum(matrix[i][i] for i in range(n))
+    return total
 
 
 # Gruppe: LarsPetschke, PaddePain
