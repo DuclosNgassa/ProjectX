@@ -576,33 +576,31 @@ def aufgabe_076_sortiere_tupel_nach_index(eintraege: list[tuple[Any, ...]], inde
 from typing import List, Sequence
 
 def aufgabe_077_transponiere_matrix(matrix: list[list[int]]) -> list[list[int]]:
-        """
-        Transponiert eine rechteckige Matrix.
+    """
+    Transponiert eine rechteckige Matrix.
 
-        Parameters:
-        - matrix: Liste von Zeilen, jede Zeile ist eine Liste von ints
+    Parameters:
+    - matrix: Liste von Zeilen, jede Zeile ist eine Liste von ints
 
-        Returns:
-        - Transponierte Matrix als Liste von Zeilen
-        """
-        if not matrix:
-            return []
+    Returns:
+    - Transponierte Matrix als Liste von Zeilen
+    """
+    if not matrix:
+        return []
 
-        # Sicherstellen, dass alle Zeilen die gleiche Länge haben
-        row_len = len(matrix < a
-        href = ""
+    # Sicherstellen, dass alle Zeilen die gleiche Länge haben
+    row_len = len(matrix < a
+    href = ""
 
-        class ="citation-link" target="_blank" style="vertical-align: super; font-size: 0.8em; margin-left: 3px;" >[0] < / a > )
-        for row in matrix:
-            if
-
-        not isinstance(row, list):
-        raise TypeError("Alle Elemente von 'matrix' müssen Listen sein")
+    class ="citation-link" target="_blank" style="vertical-align: super; font-size: 0.8em; margin-left: 3px;" >[0] < / a > )
+    for row in matrix:
+        if not isinstance(row, list):
+            raise TypeError("Alle Elemente von 'matrix' müssen Listen sein")
         if len(row) != row_len:
             raise ValueError("Matrix muss rechteckig sein (alle Zeilen gleich lang)")
 
-    # Transponieren: zeilenindex und spaltenindex tauschen
-    return [[matrix[r][c] for r in range(len(matrix))] for c in range(row_len)]
+        # Transponieren: zeilenindex und spaltenindex tauschen
+        return [[matrix[r][c] for r in range(len(matrix))] for c in range(row_len)]
 
 
 # Gruppe: LarsPetschke, PaddePain
