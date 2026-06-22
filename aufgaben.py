@@ -248,11 +248,10 @@ def aufgabe_040_count_letters(text: str) -> dict[str, int]:
     pass
 
 
-# Gruppe: Vincent-Pieper, SoerenNeumann1985
-def aufgabe_041_group_by_length(worte: list[str]) -> dict[int, list[str]]:
-    """Gruppiere Wörter nach ihrer Länge."""
-    pass
-
+ergebnis = {}
+    for wort in worte:
+        ergebnis.setdefault(len(wort), []).append(wort)
+    return ergebnis
 
 # Gruppe: Vincent-Pieper, SoerenNeumann1985
 def aufgabe_042_word_frequency(worte: list[str]) -> dict[str, int]:
