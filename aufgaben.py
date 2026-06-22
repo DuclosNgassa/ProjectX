@@ -144,7 +144,7 @@ def aufgabe_022_filter_gerade(zahlen: list[int]) -> list[int]:
 # Gruppe: Tobbyte, DuclosNgassa
 def aufgabe_023_filter_ungerade(zahlen: list[int]) -> list[int]:
     """Filtere alle ungeraden Zahlen aus der Liste."""
-    pass
+    return [num % 2 != 0 for num in zahlen]
 
 
 # Gruppe: Tobbyte, DuclosNgassa
