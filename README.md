@@ -5,41 +5,51 @@ Funktion hat einen deutschen Docstring, `pass` als Platzhalter und soll von den
 Studierenden implementiert werden. Fokus: Strings, Listen, Dicts/Sets,
 Schleifen, einfache Mathematik und saubere Funktionalität.
 
-## Gruppenaufteilung (5 Gruppen laut Board)
+## Gruppenaufteilung (4 Gruppen laut Board)
 
 Die aktuelle Referenz für Gruppen und Aufgabenbereiche ist [`PROJECT.md`](PROJECT.md).
 
-- **Gruppe 1** (`Dni-schaf`, `smartsys`): Funktionen 1–20 (`aufgabe_001` bis `aufgabe_020`)
-- **Gruppe 2** (`Tobbyte`, `DuclosNgassa`): Funktionen 21–40 (`aufgabe_021` bis `aufgabe_040`)
-- **Gruppe 3** (`Vincent-Pieper`, `SoerenNeumann1985`): Funktionen 41–60 (`aufgabe_041` bis `aufgabe_060`)
-- **Gruppe 4** (`LarsPetschke`, `PaddePain`): Funktionen 61–80 (`aufgabe_061` bis `aufgabe_080`)
-- **Gruppe 5** (`binudio1`, `iSayaGen`): Funktionen 81–100 (`aufgabe_081` bis `aufgabe_100`)
+- **Gruppe 1** (Dennis `dbudb`, Linda `lindaEbbert`): Funktionen 1–25 (`aufgabe_001` bis `aufgabe_025`)
+- **Gruppe 2** (Martin `Harangason`, Thorsten `ThorKel1202`): Funktionen 26–50 (`aufgabe_026` bis `aufgabe_050`)
+- **Gruppe 3** (Marcel `maro-101`, Hans-Günter `HGKlemp`): Funktionen 51–75 (`aufgabe_051` bis `aufgabe_075`)
+- **Gruppe 4** (Aylin `Aylin65`, Jugo `jugomit`): Funktionen 76–100 (`aufgabe_076` bis `aufgabe_100`)
 
 Hinweis: Die Nummer ist im Funktionsnamen enthalten. Bitte bearbeitet nur den
 euch zugewiesenen Bereich, damit Merge-Konflikte minimiert werden. Eure Namen
 stehen auch direkt als Kommentar über jeder Aufgabe in `aufgaben.py`.
 
-Wenn ihr zuvor mit einer älteren 4-Gruppen-Aufteilung (je 25 Aufgaben) gearbeitet
-habt, legt neue Branches nach der aktuellen [`PROJECT.md`](PROJECT.md) an.
+Wenn ihr zuvor mit einer älteren 5-Gruppen-Aufteilung (je 20 Aufgaben) gearbeitet
+habt, legt neue Branches pro Aufgabe nach der aktuellen [`PROJECT.md`](PROJECT.md) an.
 
 ## Vorgehensweise für Studierende
 
+**Branch-Schema:** `gruppe-x/github-name/aufgabe-xxx` (ein Branch pro Aufgabe)
+
+Die Schritte 3–8 wiederholt ihr für jede Aufgabe in eurem Bereich.
+
 1. Repository klonen: `git clone <repo-url>`
 2. In das Repo wechseln: `cd ProjectX`
-3. Eigenen Branch anlegen (Beispiel für Gruppe 1, Person `Dni-schaf`):
-  - `git checkout -b gruppe-1/Dni-schaf`
-4. Nur eure Funktionen in `aufgaben.py` implementieren (Docstring lesen).
-5. Lokale Checks (Beispiele):
-  - Optional: einfache Selbsttests schreiben/ausführen
-  - Gruppenzuordnung prüfen: `python3 -m pytest tests/test_gruppen_zuordnung.py`
-6. Änderungen prüfen: `git status`
-7. Änderungen vormerken und committen:
+3. Eigenen Branch pro Aufgabe anlegen (Beispiel Gruppe 1, GitHub-Name `dbudb`,
+   Aufgabe `aufgabe_001`):
+  - `git checkout master` (bzw. `main`)
+  - `git pull origin master` (bzw. `git pull origin main`)
+  - `git checkout -b gruppe-1/dbudb/aufgabe-001`
+4. Nur die jeweilige Funktion in `aufgaben.py` implementieren (Docstring lesen).
+5. Änderungen prüfen: `git status`
+6. Änderungen vormerken und committen:
   - `git add aufgaben.py`
-  - `git commit -m "Implementiere Aufgaben 001-010"`
-8. Branch pushen: `git push origin gruppe-1/Dni-schaf`
-9. Pull Request (PR) im Git-Host erstellen. Reviewer: Dozent oder Teamlead.
-10. Feedback einarbeiten, PR aktualisieren (`git add` + `git commit --amend` oder
-  neuer Commit, dann `git push --force-with-lease` bei amend).
+  - `git commit -m "Implementiere aufgabe_001"`
+7. Branch pushen: `git push origin gruppe-1/dbudb/aufgabe-001`
+8. Euren Branch in `master` (oder `main`) mergen:
+  - `git checkout master` (bzw. `git checkout main`)
+  - `git pull origin master` (bzw. `git pull origin main`)
+  - `git merge gruppe-1/dbudb/aufgabe-001`
+  - Bei Konflikten: markierte Stellen lösen, dann `git add` und
+    `git commit` (falls Git keinen Merge-Commit erstellt hat)
+  - `git push origin master` (bzw. `git push origin main`)
+9. Optional: Statt lokalem Merge einen Pull Request (PR) im Git-Host erstellen.
+  Reviewer: Dozent oder Teamlead. Feedback einarbeiten und Branch/PR aktualisieren.
+10. Nächste Aufgabe: ab Schritt 3 mit neuem Branch (z. B. `gruppe-1/dbudb/aufgabe-002`).
 
 ## Qualitätsleitplanken
 
@@ -52,14 +62,16 @@ habt, legt neue Branches nach der aktuellen [`PROJECT.md`](PROJECT.md) an.
 ## Konflikt vermeiden
 
 - Arbeite ausschließlich im zugewiesenen Funktionsbereich.
-- Ziehe vor neuem Work `git pull origin main` (oder `git fetch` + `git rebase`).
-- Bei Konflikten: ruhig bleiben, Konflikt markieren, lokal testen, erst dann
+- Ziehe vor neuem Work `git pull origin master` (bzw. `main`, oder `git fetch` +
+  `git rebase`).
+- Bei Konflikten: ruhig bleiben, Konflikt markieren, lokal prüfen, erst dann
 committen.
 
 ## Abgabeformat
 
-- Ein PR pro Person/Branch.
-- Commit-Messages: kurz und beschreibend (z.B. `Implementiere Aufgaben 035-040`).
+- Ein Branch und ein Merge pro Aufgabe in `master`/`main` (PR optional).
+- Branch-Name: `gruppe-x/github-name/aufgabe-xxx` (z. B. `gruppe-1/dbudb/aufgabe-001`).
+- Commit-Messages: kurz und beschreibend (z. B. `Implementiere aufgabe_001`).
 - Keine Änderungen an fremden Bereichen oder an der Gruppenaufteilung.
 
 Viel Erfolg und fragt bei Unklarheiten früh nach!
