@@ -488,65 +488,102 @@ def aufgabe_080_matrix_multiply(a: list[list[int]], b: list[list[int]]) -> list[
     pass
 
 
-# Gruppe: binudio1, iSayaGen
-def aufgabe_081_filter_worte_laenge(worte: list[str], minimum: int) -> list[str]:
-    """Filtere Wörter, deren Länge mindestens minimum beträgt."""
-    pass
-
-
-# Gruppe: binudio1, iSayaGen
 def aufgabe_082_join_ohne_letztes(worte: list[str]) -> str:
     """Verbinde Wörter mit Komma, ersetze das letzte Komma durch ' und '."""
-    pass
+    if len(worte) == 0:
+        return ""
+    if len(worte) == 1:
+        return worte[0]
+    return ", ".join(worte[:-1]) + " und " + worte[-1]
+
 
 
 # Gruppe: binudio1, iSayaGen
 def aufgabe_083_count_characters_ignore_case(text: str) -> dict[str, int]:
     """Zähle Zeichenhäufigkeiten ohne zwischen Groß/Klein zu unterscheiden."""
-    pass
+    ergebnis = {}
+    for zeichen in text.lower():
+        ergebnis[zeichen] = ergebnis.get(zeichen, 0) + 1
+    return ergebnis
 
 
 # Gruppe: binudio1, iSayaGen
 def aufgabe_084_vokale_entfernen(text: str) -> str:
     """Entferne alle Vokale aus dem Text."""
-    pass
+    vokale = "aeiouAEIOU"
+    return "".join(b for b in text if b not in vokale)
 
 
 # Gruppe: binudio1, iSayaGen
 def aufgabe_085_erste_wiederholung(werte: list[Any]) -> Optional[Any]:
     """Finde das erste Element, das mehr als einmal vorkommt."""
-    pass
+    gesehen = set()
+    for wert in werte:
+        if wert in gesehen:
+            return wert
+        gesehen.add(wert)
+    return None
 
 
 # Gruppe: binudio1, iSayaGen
 def aufgabe_086_ist_sortiert(werte: list[int]) -> bool:
     """Prüfe, ob die Liste nicht-absteigend sortiert ist."""
-    pass
+    for i in range(len(werte) - 1):
+        if werte[i] > werte[i + 1]:
+            return False
+    return True
 
 
 # Gruppe: binudio1, iSayaGen
 def aufgabe_087_bubble_sort(werte: list[int]) -> list[int]:
     """Sortiere die Liste mit Bubble-Sort und gib eine neue Liste zurück."""
-    pass
+    liste = werte.copy()
+
+    for i in range(len(liste)):
+        for j in range(len(liste) - 1 - i):
+            if liste[j] > liste[j + 1]:
+                liste[j], liste[j + 1] = liste[j + 1], liste[j]
+
+    return liste
 
 
 # Gruppe: binudio1, iSayaGen
 def aufgabe_088_binary_search(werte: list[int], ziel: int) -> int:
     """Finde den Index von ziel in sortierter Liste, -1 falls nicht vorhanden."""
-    pass
+    links = 0
+    rechts = len(werte) - 1
+
+    while links <= rechts:
+        mitte = (links + rechts) // 2
+
+        if werte[mitte] == ziel:
+            return mitte
+        elif werte[mitte] < ziel:
+            links = mitte + 1
+        else:
+            rechts = mitte - 1
+
+    return -1
 
 
 # Gruppe: binudio1, iSayaGen
 def aufgabe_089_two_sum(werte: list[int], ziel: int) -> Optional[tuple[int, int]]:
     """Finde zwei Indizes, deren Werte zusammen ziel ergeben."""
-    pass
+    gesehen = {}
+
+    for i, zahl in enumerate(werte):
+        rest = ziel - zahl
+        if rest in gesehen:
+            return (gesehen[rest], i)git
+        gesehen[zahl] = i
+
+    return None
 
 
 # Gruppe: binudio1, iSayaGen
 def aufgabe_090_anagramm(text_a: str, text_b: str) -> bool:
     """Prüfe, ob zwei Strings Anagramme sind."""
-    pass
-
+    return sorted(text_a.lower()) == sorted(text_b.lower())
 
 # Gruppe: binudio1, iSayaGen
 def aufgabe_091_zeichenhaeufigkeit_top(text: str, limit: int = 3) -> list[tuple[str, int]]:
