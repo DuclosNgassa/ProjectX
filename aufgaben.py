@@ -554,64 +554,107 @@ def aufgabe_089_two_sum(werte: list[int], ziel: int) -> Optional[tuple[int, int]
 # Gruppe: binudio1, iSayaGen
 def aufgabe_090_anagramm(text_a: str, text_b: str) -> bool:
     """Prüfe, ob zwei Strings Anagramme sind."""
-    pass
-
-
-# Gruppe: binudio1, iSayaGen
-def aufgabe_091_zeichenhaeufigkeit_top(text: str, limit: int = 3) -> list[tuple[str, int]]:
-    """Gib die häufigsten Zeichen mitsamt Häufigkeit zurück."""
-    pass
-
-
-# Gruppe: binudio1, iSayaGen
-def aufgabe_092_tokenisiere_satz(text: str) -> list[str]:
-    """Tokenisiere einen Satz grob nach Leer- und Satzzeichen."""
-    pass
-
-
-# Gruppe: binudio1, iSayaGen
-def aufgabe_093_title_case(text: str) -> str:
-    """Setze jeden Wortanfang auf Großbuchstaben (Title Case)."""
-    pass
-
-
-# Gruppe: binudio1, iSayaGen
-def aufgabe_094_count_substring(text: str, substring: str) -> int:
-    """Zähle nicht überlappende Vorkommen eines Substrings."""
-    pass
-
-
-# Gruppe: binudio1, iSayaGen
-def aufgabe_095_remove_stopwords(worte: list[str], stopwords: list[str]) -> list[str]:
-    """Entferne Stopwörter aus einer Wortliste (case-insensitive)."""
-    pass
-
-
-# Gruppe: binudio1, iSayaGen
-def aufgabe_096_ersetzungen_kette(text: str, mapping: dict[str, str]) -> str:
-    """Führe mehrere Ersetzungen gemäß mapping nacheinander aus."""
-    pass
-
-
-# Gruppe: binudio1, iSayaGen
-def aufgabe_097_validiere_email(text: str) -> bool:
-    """Prüfe grob, ob ein String wie eine E-Mail-Adresse aussieht."""
-    pass
-
-
-# Gruppe: binudio1, iSayaGen
-def aufgabe_098_extract_domain(url: str) -> str:
-    """Extrahiere die Domain aus einer URL (ohne Schema/Path/Query)."""
-    pass
-
-
-# Gruppe: binudio1, iSayaGen
-def aufgabe_099_parse_kv(text: str) -> dict[str, str]:
-    """Parse einen Text wie 'a=1;b=2' in ein Dict."""
-    pass
+    return sorted(text_a.replace(" ", "").lower()) == sorted(text_b.replace(" ", "").lower())
 
 
 # Gruppe: binudio1, iSayaGen
 def aufgabe_100_teile_in_abschnitte(text: str, breite: int) -> list[str]:
     """Zerlege einen Text in Abschnitte fester Breite."""
-    pass
+    return [text[i:i+breite] for i in range(0, len(text), breite)]
+
+
+# Gruppe: binudio1, iSayaGen
+def aufgabe_092_tokenisiere_satz(text: str) -> list[str]:
+    """Tokenisiere einen Satz grob nach Leer- und Satzzeichen."""
+    tokens = []
+    current = ""
+    for c in text:
+        if c.isalnum():
+            current += c
+        else:
+            if current:
+                tokens.append(current)
+                current = ""
+    if current:
+        tokens.append(current)
+    return tokens
+
+
+# Gruppe: binudio1, iSayaGen
+def aufgabe_093_title_case(text: str) -> str:
+    """Setze jeden Wortanfang auf Großbuchstaben (Title Case)."""
+    return " ".join(w.capitalize() for w in text.split())
+
+
+# Gruppe: binudio1, iSayaGen
+def aufgabe_094_count_substring(text: str, substring: str) -> int:
+    """Zähle nicht überlappende Vorkommen eines Substrings."""
+    count = 0
+    i = 0
+    while True:
+        i = text.find(substring, i)
+        if i == -1:
+            break
+        count += 1
+        i += len(substring)
+    return count
+
+
+# Gruppe: binudio1, iSayaGen
+def aufgabe_095_remove_stopwords(worte: list[str], stopwords: list[str]) -> list[str]:
+    """Entferne Stopwörter aus einer Wortliste (case-insensitive)."""
+    stop = set(s.lower() for s in stopwords)
+    return [w for w in worte if w.lower() not in stop]
+
+
+# Gruppe: binudio1, iSayaGen
+def aufgabe_096_ersetzungen_kette(text: str, mapping: dict[str, str]) -> str:
+    """Führe mehrere Ersetzungen gemäß mapping nacheinander aus."""
+    for k, v in mapping.items():
+        text = text.replace(k, v)
+    return text
+
+
+# Gruppe: binudio1, iSayaGen
+def aufgabe_097_validiere_email(text: str) -> bool:
+    """Prüfe grob, ob ein String wie eine E-Mail-Adresse aussieht."""
+    if "@" not in text:
+        return False
+    parts = text.split("@")
+    if len(parts) != 2:
+        return False
+    local, domain = parts
+    if not local or not domain:
+        return False
+    if "." not in domain:
+        return False
+    return True
+
+
+# Gruppe: binudio1, iSayaGen
+def aufgabe_098_extract_domain(url: str) -> str:
+    """Extrahiere die Domain aus einer URL (ohne Schema/Path/Query)."""
+    if "://" in url:
+        url = url.split("://", 1)[1]
+    domain = url.split("/", 1)[0]
+    return domain.split("?", 1)[0]
+
+
+# Gruppe: binudio1, iSayaGen
+def aufgabe_099_parse_kv(text: str) -> dict[str, str]:
+    """Parse einen Text wie 'a=1;b=2' in ein Dict."""
+    result = {}
+    if not text:
+        return result
+    pairs = text.split(";")
+    for pair in pairs:
+        if "=" in pair:
+            k, v = pair.split("=", 1)
+            result[k] = v
+    return result
+
+
+# Gruppe: binudio1, iSayaGen
+def aufgabe_100_teile_in_abschnitte(text: str, breite: int) -> list[str]:
+    """Zerlege einen Text in Abschnitte fester Breite."""
+    return [text[i:i+breite] for i in range(0, len(text), breite)]
