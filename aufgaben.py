@@ -558,9 +558,14 @@ def aufgabe_090_anagramm(text_a: str, text_b: str) -> bool:
 
 
 # Gruppe: binudio1, iSayaGen
-def aufgabe_100_teile_in_abschnitte(text: str, breite: int) -> list[str]:
-    """Zerlege einen Text in Abschnitte fester Breite."""
-    return [text[i:i+breite] for i in range(0, len(text), breite)]
+def aufgabe_091_zeichenhaeufigkeit_top(text: str, limit: int = 3) -> list[tuple[str, int]]:
+    """Gib die häufigsten Zeichen mitsamt Häufigkeit zurück."""
+    freq = {}
+    for c in text:
+        freq[c] = freq.get(c, 0) + 1
+    items = list(freq.items())
+    items.sort(key=lambda x: x[1], reverse=True)
+    return items[:limit]
 
 
 # Gruppe: binudio1, iSayaGen
